@@ -26,18 +26,18 @@ const style ={
     field: {width: '80%'},
     btn: {position: 'absolute', right: '2%', bottom: '2%'},
     typography: {fontWeight: 600},
-    clean: {position: 'absolute', top: '2%', right: '2%', cursor: 'pointer', fontSize: '2rem'}
+    clean: {cursor: 'pointer', fontSize: '2rem'}
 }
 
 const [nameMem, setNameMem] = useState("")
+const [nameMemError, setNameMemError] = useState(false)
 const [addSuccess, setAddSuccess] = useState(false)
 const [addUpvote, setAddUpvote] = useState(0)
 const [addDownvote, setAddDownvote] = useState(0)
 const [addSumVoice, setAddSumVoice] = useState()
-const [validErrorInput, setValidErrorInput] = useState(null)
-const [validError, setValidError] = useState(false)
-const [validBack, setValidBack] = useState(false)
 
+const MIN_INPUT_NAME_MEM = 4
+const MAX_INPUT_NAME_MEM = 30
 
 useEffect(() => {
     setAddSumVoice(addUpvote + addDownvote)
@@ -66,39 +66,29 @@ const countDownDownvote = () => {
     setAddDownvote(newValue)
 }
 
-const handlerValidInput = (e) => {
-    e.preventDefault()
-    setNameMem (e.target.value)
-    if (4 > nameMem.length > 0 && nameMem.length < 3) {
-        setValidErrorInput(true)
-    }
-   
-    else {
-        setValidErrorInput(false)
+const handlerInputMem = (e) => {
+    setNameMem(e.target.value)
+    if (e.length < MAX_INPUT_NAME_MEM) {
+        setNameMem(e)
     }
 }
 
+const validationInput = (value) => {
+    const validvalue = value && value.replace (/\s{2,}/g, '')
+        if (value !== validvalue) {
+            setNameMem(validvalue)
+        }
+    const errValue = !validvalue || validvalue.length < MIN_INPUT_NAME_MEM
+    setNameMemError(errValue)
+    return errValue
+}
 
-
-const addMemToData = () => {
-    let error = "" 
-    let errorNull = null
-    let errrorLength = nameMem.length < 3
-
-    switch (error || errorNull || errrorLength) {
-        case validErrorInput:
-            setValidErrorInput(true)
-        default:
-            console.log("")
+const handlerAccept = () => {
+    if (nameMem === "" || nameMemError === true) {
+        console.log('Popraw dane')
     }
 
-
-    if (validErrorInput === true || validErrorInput === null || validErrorInput === "") {
-        console.log("Zle dane w formularzu")
-        setValidErrorInput(true)
-    }
     else {
-        setValidErrorInput(false)
         setAddSuccess(true)
         setTimeout(() => {
             setAddSuccess(false)
@@ -107,27 +97,14 @@ const addMemToData = () => {
     
 }
 
-
-const cleanAllInput = () => {
+const handlerClean = () => {
     setNameMem("")
     setAddUpvote(0)
     setAddDownvote(0)
-    setAddSumVoice()
 }
 
-
-const handleBackspace = (e) => {
-    if (e.key === 'Backspace') {
-        
-        if (e.target.value.length < 5) {
-            setValidBack(true)   
-        }
-    }
-    console.log(validBack)
-}
-
-
-
+console.log(nameMem)
+console.log(nameMemError)
   return (
     <div className='main'>
         <div className="main__wrapper">
@@ -139,18 +116,22 @@ const handleBackspace = (e) => {
                 Dodaj mema
             </div>
             <ThemeProvider theme={themeColor}>
-                < CleaningServicesIcon
-                onClick={cleanAllInput}
-                style={style.clean}
-                color='primary'
-                />
+            <div className="main__wrapper-box--clean"
+            onClick={handlerClean}
+            >
+                Wyczyść
+                    < CleaningServicesIcon
+                    style={style.clean}
+                    color='primary'
+                    />
+            </div>
             <TextField 
-            error={validErrorInput === true || validErrorInput === "" || validBack === true}
-            style={style.field}
             value={nameMem}
-            onChange={handlerValidInput}
-            onKeyDown={(e) => handleBackspace(e)}
-            helperText={validErrorInput === true || validErrorInput === "" || validBack === true ? "Nazwa mema musi miec min 4 znaki" : ""}
+            error={nameMemError}
+            helperText={nameMemError ? "Nazwa mema musi mieć min. 4 znaki" : ""}
+            onChange={handlerInputMem}
+            style={style.field}
+            onBlur={() => validationInput(nameMem)}
             id="outlined-basic" label="Nazwa mema" variant="outlined" />
             
             <div className="main__wrapper-box--voice">
@@ -203,8 +184,8 @@ const handleBackspace = (e) => {
             </div>
             <Button 
             style={style.btn}
-            variant="contained" endIcon={<SendIcon />}
-            onClick={addMemToData}
+            variant="contained" endIcon={<SendIcon />}  
+            onClick={handlerAccept}
             >
             Dodaj
             </Button>
