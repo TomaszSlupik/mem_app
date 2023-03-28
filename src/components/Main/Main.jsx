@@ -13,6 +13,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -24,7 +25,8 @@ const style ={
     paper: {position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'},
     field: {width: '80%'},
     btn: {position: 'absolute', right: '2%', bottom: '2%'},
-    typography: {fontWeight: 600}
+    typography: {fontWeight: 600},
+    clean: {position: 'absolute', top: '2%', right: '2%', cursor: 'pointer', fontSize: '2rem'}
 }
 
 const [nameMem, setNameMem] = useState("")
@@ -32,13 +34,15 @@ const [addSuccess, setAddSuccess] = useState(false)
 const [addUpvote, setAddUpvote] = useState(0)
 const [addDownvote, setAddDownvote] = useState(0)
 const [addSumVoice, setAddSumVoice] = useState()
+const [validErrorInput, setValidErrorInput] = useState(null)
+const [validError, setValidError] = useState(false)
+const [validBack, setValidBack] = useState(false)
 
 
 useEffect(() => {
     setAddSumVoice(addUpvote + addDownvote)
 }, [addUpvote, addDownvote])
 
-console.log(addSumVoice)
 
 const countUpUpvote = () => {
     const newValue = addUpvote + 1
@@ -62,17 +66,67 @@ const countDownDownvote = () => {
     setAddDownvote(newValue)
 }
 
+const handlerValidInput = (e) => {
+    e.preventDefault()
+    setNameMem (e.target.value)
+    if (4 > nameMem.length > 0 && nameMem.length < 3) {
+        setValidErrorInput(true)
+    }
+   
+    else {
+        setValidErrorInput(false)
+    }
+}
+
 
 
 const addMemToData = () => {
-    setAddSuccess(true)
+    let error = "" 
+    let errorNull = null
+    let errrorLength = nameMem.length < 3
 
-    setTimeout(() => {
-        setAddSuccess(false)
-    }, 2000)
+    switch (error || errorNull || errrorLength) {
+        case validErrorInput:
+            setValidErrorInput(true)
+        default:
+            console.log("")
+    }
 
 
+    if (validErrorInput === true || validErrorInput === null || validErrorInput === "") {
+        console.log("Zle dane w formularzu")
+        setValidErrorInput(true)
+    }
+    else {
+        setValidErrorInput(false)
+        setAddSuccess(true)
+        setTimeout(() => {
+            setAddSuccess(false)
+        }, 2000)
+    }
+    
 }
+
+
+const cleanAllInput = () => {
+    setNameMem("")
+    setAddUpvote(0)
+    setAddDownvote(0)
+    setAddSumVoice()
+}
+
+
+const handleBackspace = (e) => {
+    if (e.key === 'Backspace') {
+        
+        if (e.target.value.length < 5) {
+            setValidBack(true)   
+        }
+    }
+    console.log(validBack)
+}
+
+
 
   return (
     <div className='main'>
@@ -85,12 +139,18 @@ const addMemToData = () => {
                 Dodaj mema
             </div>
             <ThemeProvider theme={themeColor}>
+                < CleaningServicesIcon
+                onClick={cleanAllInput}
+                style={style.clean}
+                color='primary'
+                />
             <TextField 
-            error={nameMem.length > 0 && nameMem.length < 5}
+            error={validErrorInput === true || validErrorInput === "" || validBack === true}
             style={style.field}
             value={nameMem}
-            onChange={(e) => setNameMem (e.target.value)}
-            helperText={nameMem.length > 0 && nameMem.length < 5 ? "Nazwa mema musi miec min 4 znaki" : ""}
+            onChange={handlerValidInput}
+            onKeyDown={(e) => handleBackspace(e)}
+            helperText={validErrorInput === true || validErrorInput === "" || validBack === true ? "Nazwa mema musi miec min 4 znaki" : ""}
             id="outlined-basic" label="Nazwa mema" variant="outlined" />
             
             <div className="main__wrapper-box--voice">
@@ -154,6 +214,7 @@ const addMemToData = () => {
         </div>
 
         <Stack spacing={2} sx={{ width: '100%' }}>
+            
             <Snackbar open={addSuccess} autoHideDuration={6000}>
                 <Alert severity="success" sx={{ width: '100%' }}>
                 Twój mem został dodany do sekcji: 
