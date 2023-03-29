@@ -54,8 +54,16 @@ export default function Nav() {
                        
                         <div>
                             <MyLink>
+                            <Link 
+                            to="/mem_app"
+                            color='primary'
+                            style={style.link}
+                            >
+                                Home
+                            </Link>
                                
                                 <Link 
+                            to="mem_app/hot"
                             color='primary'
                             style={style.link}
                             >
@@ -63,6 +71,7 @@ export default function Nav() {
                             </Link>
                             <Divider />
                             <Link 
+                            to="mem_app/regular"
                             color='primary'
                             style={style.link}
                             >

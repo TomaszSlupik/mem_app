@@ -1,0 +1,33 @@
+[
+    {
+        "title": "Mem 1",
+        "upvotes": 26,
+        "downvotes": 0,
+        "img": ""
+    },
+    {
+        "title": "Mem 2",
+        "upvotes": -6,
+        "downvotes": 0,
+        "img": ""
+    },
+    {
+        "title": "Mem 3",
+        "upvotes": 16,
+        "downvotes": 0,
+        "img": ""
+    },
+    {
+        "title": "Mem 4",
+        "upvotes": 8,
+        "downvotes": 0,
+        "img": "/img/mouse.jpg"
+    },
+     {
+        "title": "Mem 5",
+        "upvotes": 8,
+        "downvotes": -40,
+        "img": "/img/mouse.jpg"
+    }
+    
+]

@@ -32,6 +32,7 @@ const style ={
 const [nameMem, setNameMem] = useState("")
 const [nameMemError, setNameMemError] = useState(false)
 const [addSuccess, setAddSuccess] = useState(false)
+const [addError, setAddError] = useState(false)
 const [addUpvote, setAddUpvote] = useState(0)
 const [addDownvote, setAddDownvote] = useState(0)
 const [addSumVoice, setAddSumVoice] = useState()
@@ -85,14 +86,17 @@ const validationInput = (value) => {
 
 const handlerAccept = () => {
     if (nameMem === "" || nameMemError === true) {
-        console.log('Popraw dane')
+        setAddError(true)
+        setTimeout(() => {
+            setAddError(false)
+        }, 1500)
     }
 
     else {
         setAddSuccess(true)
         setTimeout(() => {
             setAddSuccess(false)
-        }, 2000)
+        }, 1500)
     }
     
 }
@@ -103,8 +107,6 @@ const handlerClean = () => {
     setAddDownvote(0)
 }
 
-console.log(nameMem)
-console.log(nameMemError)
   return (
     <div className='main'>
         <div className="main__wrapper">
@@ -207,6 +209,15 @@ console.log(nameMemError)
                 (
                     <span> REGULAR</span>
                 )}
+                </Alert>
+            </Snackbar>
+       </Stack>
+
+       <Stack spacing={2} sx={{ width: '100%' }}>
+            
+            <Snackbar open={addError} autoHideDuration={6000}>
+                <Alert severity="error" sx={{ width: '100%' }}>
+                Wypełnij poprawnie formularz
                 </Alert>
             </Snackbar>
        </Stack>
