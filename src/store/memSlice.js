@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Mem from '../Data/Mem.json'
 
 export const fetchMem = createAsyncThunk(
     'mem/fetchMem',
     async () => {
-      const response = await axios.get(`https://tomaszslupik.github.io/api_mem_data/api_mem_data.json`);
+      // const response = await axios.get(`https://tomaszslupik.github.io/api_mem_data/api_mem_data.json`);
+      const response = await Mem
       return response;
     }
   );
-
-
 
 const memSlice = createSlice({
     name: 'mem',
@@ -18,7 +18,11 @@ const memSlice = createSlice({
       status: 'idle',
       error: null
     },
-    reducers: {},
+    reducers: {
+      addMem: (state, action) => {
+          state.mem.push (action.payload)
+      }
+    },
     extraReducers: (builder) => {
       builder
         .addCase(fetchMem.pending, (state) => {
@@ -26,7 +30,8 @@ const memSlice = createSlice({
         })
         .addCase(fetchMem.fulfilled, (state, action) => {
           state.status = 'succeeded';
-          state.mem = action.payload;
+          state.error = null;
+          state.mem.push(action.payload);
         })
         .addCase(fetchMem.rejected, (state, action) => {
           state.status = 'failed';
@@ -35,5 +40,6 @@ const memSlice = createSlice({
     }
   });
   
+  export const {addMem} = memSlice.actions
   export default memSlice.reducer;
 

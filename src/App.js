@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Hot from './components/Hot/Hot';
 import { Provider } from 'react-redux';
 import store from './store/configureStore'
+import Regular from './components/Regular/Regular';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Hot />
                 </Provider>}
               />
+            <Route path='/mem_app/regular' element={<Regular />} />
           </Routes>
         </Router>
     </div>

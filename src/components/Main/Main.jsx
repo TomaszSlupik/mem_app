@@ -41,7 +41,7 @@ const MIN_INPUT_NAME_MEM = 4
 const MAX_INPUT_NAME_MEM = 30
 
 useEffect(() => {
-    setAddSumVoice(addUpvote + addDownvote)
+    setAddSumVoice(addUpvote - addDownvote)
 }, [addUpvote, addDownvote])
 
 
