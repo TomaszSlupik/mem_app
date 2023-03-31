@@ -11,4 +11,19 @@
         display: flex;
         flex-direction: row;
     }
+    &__final {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0.4em;
+        &-header {
+            text-align: center;
+            &--under {
+                font-family: "Dancing Script", cursive;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+        }
+    }
+
 }

@@ -7,8 +7,8 @@
     },
     {
         "title": "Mem 2",
-        "upvotes": -6,
-        "downvotes": 0,
+        "upvotes": 6,
+        "downvotes": 10,
         "img": ""
     },
     {
@@ -20,13 +20,13 @@
     {
         "title": "Mem 4",
         "upvotes": 8,
-        "downvotes": 18,
+        "downvotes": 20,
         "img": "/img/mouse.jpg"
     },
      {
         "title": "Mem 5",
         "upvotes": 8,
-        "downvotes": -40,
+        "downvotes": 40,
         "img": "/img/mouse.jpg"
     }
     

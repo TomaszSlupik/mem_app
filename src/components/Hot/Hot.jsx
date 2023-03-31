@@ -11,11 +11,12 @@ import Card from '@mui/material/Card';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Typography from '@mui/material/Typography';
 import './Hot.scss'
-
 import Mem from '../../Data/Mem.json'
+import themeColor from '../../theme/themeColor';
 
-export default function Hot() {
+export default function Hot(props) {
 
     // const dispatch = useDispatch();
     // const memStatus = useSelector(state => state.mem.status);
@@ -26,60 +27,59 @@ export default function Hot() {
     //     dispatch(fetchMem());
     //   }, [dispatch]);
     
-  const [mem, setMem] = useState([Mem.filter(el => el.upvotes + el.downvotes > 5)])
-
-  useEffect(() => {
-    setMem(Mem.filter(el => el.upvotes - el.downvotes > 5))
-  }, [Mem])
-
 const editLikeUpvote = (name, number, downvotes, img) => {
-    const copyMem = [...mem]
+    const copyMem = [...props.mem]
     const editMem = {
         title: name,
         upvotes: number + 1,
         downvotes: downvotes,
         img: img
     }
-    setMem(copyMem.map(el => el.title === name ? editMem : el).filter(el => el.upvotes - el.downvotes > 5))
+    props.setMem(copyMem.map(el => el.title === name ? editMem : el))
    
 }
 
 
 const editDisLikeUpvote = (name, number, downvotes, img) => {
-  const copyMem = [...mem]
+  const copyMem = [...props.mem]
   const editMem = {
       title: name,
       upvotes: number - 1,
       downvotes: downvotes,
       img: img
   }
-  setMem(copyMem.map(el => el.title === name ? editMem : el).filter(el => el.upvotes - el.downvotes > 5))
+  props.setMem(copyMem.map(el => el.title === name ? editMem : el))
   console.log(name)
 }
 
 
 const editLikeDownvote = (name, upvotes, number, img) => {
-  const copyMem = [...mem]
+  const copyMem = [...props.mem]
   const editMem = {
       title: name,
       upvotes: upvotes,
       downvotes: number + 1,
       img: img
   }
-  setMem(copyMem.map(el => el.title === name ? editMem : el).filter(el => el.upvotes - el.downvotes > 5))
+  props.setMem(copyMem.map(el => el.title === name ? editMem : el))
  
 }
 
 const editDisLikeDownvote = (name, upvotes, number, img) => {
-  const copyMem = [...mem]
+  const copyMem = [...props.mem]
   const editMem = {
       title: name,
       upvotes: upvotes,
       downvotes: number - 1,
       img: img
   }
-  setMem(copyMem.map(el => el.title === name ? editMem : el).filter(el => el.upvotes - el.downvotes > 5))
+  props.setMem(copyMem.map(el => el.title === name ? editMem : el))
  
+}
+
+
+const style = {
+  typography: {fontWeight: 600}
 }
 
   
@@ -87,9 +87,9 @@ const editDisLikeDownvote = (name, upvotes, number, img) => {
     <div>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 2 }} > 
-                    <ThemeProvider theme={theme}>
+                    <ThemeProvider theme={theme, themeColor}>
                           {
-                            mem.map ((el, index) => {
+                            props.mem.filter(el => el.upvotes - el.downvotes > 5).map ((el, index) => {
                                 return (
                                     <Grid
                                     key={index}
@@ -121,10 +121,6 @@ const editDisLikeDownvote = (name, upvotes, number, img) => {
                                                     Downvotes {el.downvotes}
                                                     <BottomNavigation
                                                       showLabels
-                                                      // value={value}
-                                                      // onChange={(event, newValue) => {
-                                                      //   setValue(newValue);
-                                                      // }}
                                                     >
                                                       <BottomNavigationAction 
                                                       onClick={() => editLikeDownvote(el.title, el.upvotes, el.downvotes, el.img)}
@@ -137,10 +133,13 @@ const editDisLikeDownvote = (name, upvotes, number, img) => {
                                                   </div>
                                                   <div className="card__final">
                                                       <div className="card__final-header">
-
+                                                      <Typography 
+                                                        style={style.typography}
+                                                        color="primary" mt={2}>{el.upvotes - el.downvotes}</Typography>
+                                                        <div className="card__final-header--under">
+                                                            Final Voice
+                                                        </div>
                                                       </div>
-                                                      {el.upvotes - el.downvotes}
-                                                      Fianl Voice
                                                   </div>
                                                 </div>
                                                 <div>

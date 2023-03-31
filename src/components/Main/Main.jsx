@@ -19,7 +19,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-export default function Main() {
+export default function Main(props) {
 
 const style ={
     paper: {position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'},
@@ -84,7 +84,8 @@ const validationInput = (value) => {
     return errValue
 }
 
-const handlerAccept = () => {
+const handlerAccept = (e) => {
+    e.preventDefault()
     if (nameMem === "" || nameMemError === true) {
         setAddError(true)
         setTimeout(() => {
@@ -93,6 +94,7 @@ const handlerAccept = () => {
     }
 
     else {
+        addMemToDataBase(e)
         setAddSuccess(true)
         setTimeout(() => {
             setAddSuccess(false)
@@ -105,6 +107,21 @@ const handlerClean = () => {
     setNameMem("")
     setAddUpvote(0)
     setAddDownvote(0)
+}
+
+
+const addMemToDataBase = (e) => {
+    e.preventDefault()
+    const newMem = {
+        title: nameMem,
+        upvotes: addUpvote,
+        downvotes: addDownvote,
+        img: "nic"
+    }
+
+    const allMem = [...props.mem, newMem]
+    props.setMem(allMem)
+
 }
 
   return (
@@ -213,7 +230,7 @@ const handlerClean = () => {
             </Snackbar>
        </Stack>
 
-       <Stack spacing={2} sx={{ width: '100%' }}>
+       <Stack spacing={2} sx={{ width: '100%'}}>
             
             <Snackbar open={addError} autoHideDuration={6000}>
                 <Alert severity="error" sx={{ width: '100%' }}>
