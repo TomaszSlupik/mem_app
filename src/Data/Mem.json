@@ -21,13 +21,13 @@
         "title": "Mem 4",
         "upvotes": 8,
         "downvotes": 20,
-        "img": "/img/mouse.jpg"
+        "img": "mouse.jpg"
     },
      {
         "title": "Mem 5",
         "upvotes": 8,
         "downvotes": 40,
-        "img": "/img/mouse.jpg"
+        "img": "/mem_app/img/mouse.jpg"
     }
     
 ]

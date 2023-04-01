@@ -14,6 +14,8 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -36,6 +38,7 @@ const [addError, setAddError] = useState(false)
 const [addUpvote, setAddUpvote] = useState(0)
 const [addDownvote, setAddDownvote] = useState(0)
 const [addSumVoice, setAddSumVoice] = useState()
+const [imgMem, setImgMem] = useState("start")
 
 const MIN_INPUT_NAME_MEM = 4
 const MAX_INPUT_NAME_MEM = 30
@@ -86,7 +89,8 @@ const validationInput = (value) => {
 
 const handlerAccept = (e) => {
     e.preventDefault()
-    if (nameMem === "" || nameMemError === true) {
+    if (nameMem === "" || nameMemError === true || imgMem === 'start') {
+        setImgMem("")
         setAddError(true)
         setTimeout(() => {
             setAddError(false)
@@ -116,12 +120,21 @@ const addMemToDataBase = (e) => {
         title: nameMem,
         upvotes: addUpvote,
         downvotes: addDownvote,
-        img: "nic"
+        img: imgMem
     }
 
     const allMem = [...props.mem, newMem]
     props.setMem(allMem)
+    props.setPrevState(allMem)
+}
 
+const handleAddImage = (e) => {
+    const fileMem = e.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(fileMem);
+    reader.onload = () => {
+        setImgMem(reader.result);
+      }
 }
 
   return (
@@ -152,7 +165,30 @@ const addMemToDataBase = (e) => {
             style={style.field}
             onBlur={() => validationInput(nameMem)}
             id="outlined-basic" label="Nazwa mema" variant="outlined" />
-            
+            <div className="main__wrapper-box--image">
+            <IconButton 
+            color="primary" aria-label="upload picture" component="label">
+                    <input 
+                    onChange={handleAddImage}
+                    hidden accept="image/*" type="file"  />
+                    <div>Dodaj zdjęcie</div>
+                    <PhotoCamera />
+            </IconButton>
+                {
+                    imgMem === "start" ?
+                    (
+                        <div></div>
+                    ) :
+                    imgMem === "" ?
+                    (
+                        <div>Wczytaj zdjęcie!</div>
+                    )
+                    :
+                    (
+                        <div className='main__wrapper-box--image---true'>Twoje zdjęcie zostało poprawnie wczytane</div>
+                    )
+                }
+            </div>
             <div className="main__wrapper-box--voice">
                 <Badge badgeContent={addUpvote} color="primary">
                 Upvote

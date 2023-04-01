@@ -2,6 +2,7 @@ import './App.scss';
 import React, { useEffect, useState } from 'react'
 import Main from './components/Main/Main';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hot from './components/Hot/Hot';
 import { Provider } from 'react-redux';
@@ -22,40 +23,105 @@ function App() {
   }, [Mem])
 
 
-  const [memRegular, setMemRegular] = useState()
-  const [memHot, setMemHot] = useState([])
-
-  useEffect(() => {
-    setMemHot(mem.map(el => el).filter(el => el.upvotes - el.downvotes > 5))
-    setMemRegular (mem.map(el => el).filter(el => 5 >= el.upvotes - el.downvotes))
-  }, [mem])
-
-  const searchMem = (input) => {
-      console.log(input)
+  const searchMemHot = (input) => {
+      const filterData = mem.filter(el => el.title.toLowerCase().includes(input.toLowerCase()))
+      setMem(filterData)
   }
+
+  const [prevState, setPrevState] = useState(Mem)
+
+  const backToDataBase = () => {
+    setMem(prevState)
+}
+
+const editLikeUpvote = (name, number, downvotes, img) => {
+  const copyMem = [...mem]
+  const editMem = {
+      title: name,
+      upvotes: number + 1,
+      downvotes: downvotes,
+      img: img
+  }
+  setMem(copyMem.map(el => el.title === name ? editMem : el))
+  setPrevState(copyMem.map(el => el.title === name ? editMem : el))
+}
+
+
+const editDisLikeUpvote = (name, number, downvotes, img) => {
+const copyMem = [...mem]
+const editMem = {
+    title: name,
+    upvotes: number - 1,
+    downvotes: downvotes,
+    img: img
+}
+setMem(copyMem.map(el => el.title === name ? editMem : el))
+setPrevState(copyMem.map(el => el.title === name ? editMem : el))
+
+}
+
+
+const editLikeDownvote = (name, upvotes, number, img) => {
+const copyMem = [...mem]
+const editMem = {
+    title: name,
+    upvotes: upvotes,
+    downvotes: number + 1,
+    img: img
+}
+setMem(copyMem.map(el => el.title === name ? editMem : el))
+setPrevState(copyMem.map(el => el.title === name ? editMem : el))
+
+}
+
+const editDisLikeDownvote = (name, upvotes, number, img) => {
+const copyMem = [...mem]
+const editMem = {
+    title: name,
+    upvotes: upvotes,
+    downvotes: number - 1,
+    img: img
+}
+setMem(copyMem.map(el => el.title === name ? editMem : el))
+setPrevState(copyMem.map(el => el.title === name ? editMem : el))
+}
 
   return (
     <div className="App">
         <Router>
           <Header 
-          searchMem={searchMem}
           />
           <Routes>
             <Route path='/mem_app' element={<Main
              mem={mem}
              setMem={setMem}
+             setPrevState={setPrevState}
             />} />
             <Route path='/mem_app/hot' element={
                 <Provider store={store}>
                 <Hot 
                  mem={mem}
                  setMem={setMem}
+                 setPrevState={setPrevState}
+                 searchMemHot={searchMemHot}
+                 backToDataBase={backToDataBase}
+                 editLikeUpvote={editLikeUpvote}
+                 editDisLikeUpvote={editDisLikeUpvote}
+                 editLikeDownvote={editLikeDownvote}
+                 editDisLikeDownvote={editDisLikeDownvote}
                 />
                 </Provider>}
               />
             <Route path='/mem_app/regular' element={<Regular 
              mem={mem}
              setMem={setMem}
+             setPrevState={setPrevState}
+             searchMemHot={searchMemHot}
+             backToDataBase={backToDataBase}
+             editLikeUpvote={editLikeUpvote}
+             editDisLikeUpvote={editDisLikeUpvote}
+             editLikeDownvote={editLikeDownvote}
+             editDisLikeDownvote={editDisLikeDownvote}
             />} />
           </Routes>
           <Footer />

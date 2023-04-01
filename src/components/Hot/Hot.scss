@@ -7,6 +7,9 @@
         padding: 0.2em 0.4em;
         font-family: "Dancing Script", cursive;
     }
+    &__img {
+        height: 200px;
+    }
     &__voice {
         display: flex;
         flex-direction: row;
@@ -26,4 +29,10 @@
         }
     }
 
+}
+
+.searchmem {
+    position: absolute;
+    left: 2%;
+    top: 2%;
 }

@@ -12,7 +12,7 @@
         &-box {
             position: relative;
             width: 80%;
-            height: 450px;
+            height: 515px;
             display: flex;
             justify-content: center;
             &--header {
@@ -30,6 +30,14 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+            }
+            &--image {
+                text-align: center;
+                &---true {
+                    color: green;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                }
             }
             &--voice {
                 margin-top: 1.4em;
