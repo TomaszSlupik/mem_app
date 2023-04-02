@@ -2,7 +2,7 @@ import './App.scss';
 import React, { useEffect, useState } from 'react'
 import Main from './components/Main/Main';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import themeColor from './theme/themeColor';
 import Header from './components/Header/Header';
 import Hot from './components/Hot/Hot';
 import { Provider } from 'react-redux';
@@ -86,16 +86,24 @@ setMem(copyMem.map(el => el.title === name ? editMem : el))
 setPrevState(copyMem.map(el => el.title === name ? editMem : el))
 }
 
+
+const [changeColorLayout, setChangeColorLayout] = useState(themeColor)
+
+
   return (
     <div className="App">
         <Router>
           <Header 
+            changeColorLayout={changeColorLayout}
+            setChangeColorLayout={setChangeColorLayout}
           />
           <Routes>
             <Route path='/mem_app' element={<Main
              mem={mem}
              setMem={setMem}
              setPrevState={setPrevState}
+             changeColorLayout={changeColorLayout}
+             setChangeColorLayout={setChangeColorLayout}
             />} />
             <Route path='/mem_app/hot' element={
                 <Provider store={store}>
@@ -109,6 +117,8 @@ setPrevState(copyMem.map(el => el.title === name ? editMem : el))
                  editDisLikeUpvote={editDisLikeUpvote}
                  editLikeDownvote={editLikeDownvote}
                  editDisLikeDownvote={editDisLikeDownvote}
+                 changeColorLayout={changeColorLayout}
+                 setChangeColorLayout={setChangeColorLayout}
                 />
                 </Provider>}
               />
@@ -122,9 +132,14 @@ setPrevState(copyMem.map(el => el.title === name ? editMem : el))
              editDisLikeUpvote={editDisLikeUpvote}
              editLikeDownvote={editLikeDownvote}
              editDisLikeDownvote={editDisLikeDownvote}
+             changeColorLayout={changeColorLayout}
+             setChangeColorLayout={setChangeColorLayout}
             />} />
           </Routes>
-          <Footer />
+          <Footer
+          changeColorLayout={changeColorLayout}
+          setChangeColorLayout={setChangeColorLayout}
+          />
         </Router>
     </div>
   );

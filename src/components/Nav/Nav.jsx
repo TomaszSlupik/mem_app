@@ -12,7 +12,8 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
 
-export default function Nav() {
+
+export default function Nav(props) {
 
     const [state, setState] = React.useState({
         top: false,
@@ -23,7 +24,7 @@ export default function Nav() {
 
     const style ={
     burger: {cursor: 'pointer', fontSize: '5rem', position: 'fixed', right: '2%', top: '0%', zIndex: 30},
-    link: {textDecoration: 'none', textAlign: 'center', textTransform: 'uppercase'},
+    link: {textDecoration: 'none', textAlign: 'center', textTransform: 'uppercase', color: props.changeColorLayout.palette.primary.main},
     }
 
         
@@ -48,7 +49,7 @@ export default function Nav() {
         
           <ListItem disablePadding>
             <Navigation>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme, props.changeColorLayout}>
                 <div>
                     <div>
                        
@@ -56,7 +57,6 @@ export default function Nav() {
                             <MyLink>
                             <Link 
                             to="/mem_app"
-                            color='primary'
                             style={style.link}
                             >
                                 Home
@@ -64,7 +64,6 @@ export default function Nav() {
                                
                                 <Link 
                             to="mem_app/hot"
-                            color='primary'
                             style={style.link}
                             >
                                 Hot
@@ -72,7 +71,6 @@ export default function Nav() {
                             <Divider />
                             <Link 
                             to="mem_app/regular"
-                            color='primary'
                             style={style.link}
                             >
                                 Regular
@@ -96,7 +94,7 @@ export default function Nav() {
     <div className='nav'>
          {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-            <ThemeProvider theme={themeColor}>
+            <ThemeProvider theme={props.changeColorLayout}>
           <MenuIcon 
           color='primary'
           style={style.burger} onClick={toggleDrawer(anchor, true)}>{anchor}</MenuIcon>

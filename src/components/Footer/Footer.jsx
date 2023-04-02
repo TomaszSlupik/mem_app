@@ -5,7 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import themeColor from '../../theme/themeColor';
 import { current } from '@reduxjs/toolkit';
 
-export default function Footer() {
+export default function Footer(props) {
 
 
 const yearNow = () => {
@@ -22,9 +22,9 @@ useEffect(() => {
   return (
         <footer>
             <div className="footer">
-            <ThemeProvider theme={themeColor}>
+            <ThemeProvider theme={props.changeColorLayout}>
             <Paper 
-            style={{position: 'relative', width: '100%', height: '100%', backgroundColor: themeColor.palette.primary.main}}
+            style={{position: 'relative', width: '100%', height: '100%', backgroundColor: props.changeColorLayout.palette.primary.main}}
             elevation={3}>
                 <div className="footer__box">
                         <div className="footer__box-text">

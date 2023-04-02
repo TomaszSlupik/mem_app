@@ -16,6 +16,10 @@ import Typography from '@mui/material/Typography';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import PaletteIcon from '@mui/icons-material/Palette';
+
+
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -27,8 +31,10 @@ const style ={
     paper: {position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'},
     field: {width: '80%'},
     btn: {position: 'absolute', right: '2%', bottom: '2%'},
+    btnGroup: {border: '1 px solid'},
     typography: {fontWeight: 600},
-    clean: {cursor: 'pointer', fontSize: '2rem'}
+    clean: {cursor: 'pointer', fontSize: '2rem'},
+    palette: {position: 'absolute', cursor: 'pointer', fontSize: '4rem', top: '-6%' }
 }
 
 const [nameMem, setNameMem] = useState("")
@@ -89,20 +95,29 @@ const validationInput = (value) => {
 
 const handlerAccept = (e) => {
     e.preventDefault()
-    if (nameMem === "" || nameMemError === true || imgMem === 'start') {
+    if (nameMem === "" || nameMemError === true) {
         setImgMem("")
         setAddError(true)
         setTimeout(() => {
             setAddError(false)
         }, 1500)
     }
-
+    else if (imgMem === '') {
+        setAddError(true)
+        setTimeout(() => {
+            setAddError(false)
+        }, 1500)
+    }
     else {
         addMemToDataBase(e)
         setAddSuccess(true)
         setTimeout(() => {
             setAddSuccess(false)
         }, 1500)
+        setNameMem("")
+        setAddUpvote(0)
+        setAddDownvote(0)
+        setImgMem("start")
     }
     
 }
@@ -111,6 +126,7 @@ const handlerClean = () => {
     setNameMem("")
     setAddUpvote(0)
     setAddDownvote(0)
+    setImgMem("start")
 }
 
 
@@ -137,8 +153,41 @@ const handleAddImage = (e) => {
       }
 }
 
+
+
+const changeThemeColor = () => {
+    const newColor = props.changeColorLayout.palette.primary.main === '#9400d3' ? '#008b8b' : '#9400d3'
+    props.setChangeColorLayout({
+        ...props.changeColorLayout,
+        palette: {
+            ...props.changeColorLayout.palette,
+            primary: {
+                ...props.changeColorLayout.palette.primary,
+                main: newColor
+            }
+        },
+        components: {
+            MuiButton: {
+              styleOverrides: {
+                root: {
+                  '&:hover': {
+                    backgroundColor: newColor,
+                    color: '#fff'
+                  }
+                }
+              }
+            }
+          }
+    })
+}
+
+
+
   return (
     <div className='main'>
+        <PaletteIcon 
+        onClick={changeThemeColor}
+        style={style.palette}/>
         <div className="main__wrapper">
             <div className="main__wrapper-box">
             <Paper 
@@ -147,7 +196,7 @@ const handleAddImage = (e) => {
             <div className="main__wrapper-box--header">
                 Dodaj mema
             </div>
-            <ThemeProvider theme={themeColor}>
+            <ThemeProvider theme={props.changeColorLayout}>
             <div className="main__wrapper-box--clean"
             onClick={handlerClean}
             >
@@ -181,7 +230,7 @@ const handleAddImage = (e) => {
                     ) :
                     imgMem === "" ?
                     (
-                        <div>Wczytaj zdjęcie!</div>
+                        <div className='main__wrapper-box--image---false'>Wczytaj zdjęcie!</div>
                     )
                     :
                     (
@@ -197,14 +246,18 @@ const handleAddImage = (e) => {
                 </Badge>
                 
                 <ButtonGroup
+                style={style.btnGroup}
                 disableElevation
                 variant="contained"
                 aria-label="Disabled elevation buttons"
                 >
                 <Button
+                style={style.btnGroup}
                 onClick={countUpUpvote}
                 >+</Button>
                 <Button
+                style={style.btnGroup}
+                disabled={addUpvote <= 0}
                 onClick={countDownUpvote}
                 >-</Button>
                 </ButtonGroup>
@@ -226,6 +279,7 @@ const handleAddImage = (e) => {
             onClick={countUpDownvote}
             >+</Button>
             <Button
+            disabled={addDownvote <=0}
             onClick={countDownDownvote}
             >-</Button>
             </ButtonGroup>

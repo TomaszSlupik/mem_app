@@ -39,6 +39,7 @@ export default function FormMem(props) {
                       onClick={() => props.editLikeUpvote(props.title, props.upvotes, props.downvotes, props.img)}
                       label="like" icon={<FavoriteIcon />} />
                       <BottomNavigationAction
+                      disabled={props.upvotes <= 0} 
                       onClick={() => props.editDisLikeUpvote(props.title, props.upvotes, props.downvotes, props.img)}
                       label="dislike" icon={<FavoriteIcon />} />
                     </BottomNavigation>
@@ -52,6 +53,7 @@ export default function FormMem(props) {
                       onClick={() => props.editLikeDownvote(props.title, props.upvotes, props.downvotes, props.img)}
                       label="like" icon={<FavoriteIcon />} />
                       <BottomNavigationAction 
+                      disabled={props.downvotes <= 0} 
                       onClick={() => props.editDisLikeDownvote(props.title, props.upvotes, props.downvotes, props.img)}
                       label="dislike" icon={<FavoriteIcon />} />
                     </BottomNavigation>
@@ -61,7 +63,8 @@ export default function FormMem(props) {
                       <div className="card__final-header">
                       <Typography 
                         style={style.typography}
-                        color="primary" mt={2}>{props.upvotes - props.downvotes}</Typography>
+                        color="primary" 
+                        mt={2}>{props.upvotes - props.downvotes}</Typography>
                         <div className="card__final-header--under">
                             Final Voice
                         </div>

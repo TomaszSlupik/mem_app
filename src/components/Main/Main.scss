@@ -35,8 +35,15 @@
                 text-align: center;
                 &---true {
                     color: green;
-                    font-size: 0.8rem;
-                    font-weight: 600;
+                    font-weight: 400;
+                    font-size: 0.75rem;
+                    font-family: "Roboto","Helvetica","Arial",sans-serif;
+                }
+                &---false {
+                    color: #d32f2f;
+                    font-weight: 400;
+                    font-size: 0.75rem;
+                    font-family: "Roboto","Helvetica","Arial",sans-serif;
                 }
             }
             &--voice {

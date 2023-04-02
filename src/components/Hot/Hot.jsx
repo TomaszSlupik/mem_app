@@ -31,7 +31,7 @@ export default function Hot(props) {
       </div>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 2 }} > 
-                    <ThemeProvider theme={theme, themeColor}>
+                    <ThemeProvider theme={theme, props.changeColorLayout}>
                           {
                             props.mem.filter(el => el.upvotes - el.downvotes > 5).map ((el, index) => {
                                 return (

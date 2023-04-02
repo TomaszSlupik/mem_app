@@ -21,7 +21,7 @@ export default function Regular(props) {
       </div>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 2 }} > 
-                    <ThemeProvider theme={theme, themeColor}>
+                    <ThemeProvider theme={theme, props.changeColorLayout}>
         {
           props.mem.filter(el => 5 >= el.upvotes - el.downvotes).map((el, index) => {
             return (
