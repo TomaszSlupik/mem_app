@@ -88,7 +88,7 @@ setPrevState(copyMem.map(el => el.title === name ? editMem : el))
 
 
 const [changeColorLayout, setChangeColorLayout] = useState(themeColor)
-
+const [changeView, setChangeView] = useState(false)
 
   return (
     <div className="App">
@@ -119,6 +119,8 @@ const [changeColorLayout, setChangeColorLayout] = useState(themeColor)
                  editDisLikeDownvote={editDisLikeDownvote}
                  changeColorLayout={changeColorLayout}
                  setChangeColorLayout={setChangeColorLayout}
+                 changeView={changeView}
+                 setChangeView={setChangeView}
                 />
                 </Provider>}
               />
@@ -134,6 +136,8 @@ const [changeColorLayout, setChangeColorLayout] = useState(themeColor)
              editDisLikeDownvote={editDisLikeDownvote}
              changeColorLayout={changeColorLayout}
              setChangeColorLayout={setChangeColorLayout}
+             changeView={changeView}
+             setChangeView={setChangeView}
             />} />
           </Routes>
           <Footer

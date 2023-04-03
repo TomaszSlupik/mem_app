@@ -7,6 +7,8 @@ import './Hot.scss'
 import themeColor from '../../theme/themeColor';
 import Searchmem from '../Searchmem/Searchmem';
 import FormMem from '../FormMem/FormMem';
+import Viewcard from '../Viewcard/Viewcard';
+import Listmem from '../Listmem/Listmem';
 
 export default function Hot(props) {
 
@@ -29,26 +31,55 @@ export default function Hot(props) {
       backToDataBase={props.backToDataBase}
       />
       </div>
+      <div className="viewCard">
+          <Viewcard
+           changeColorLayout={props.changeColorLayout}
+           setChangeColorLayout={props.setChangeColorLayout}
+           changeView={props.changeView}
+           setChangeView={props.setChangeView}
+          />
+      </div>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 2 }} > 
                     <ThemeProvider theme={theme, props.changeColorLayout}>
-                          {
-                            props.mem.filter(el => el.upvotes - el.downvotes > 5).map ((el, index) => {
-                                return (
-                                    <FormMem 
-                                    index={index}
-                                    title={el.title}
-                                    upvotes={el.upvotes}
-                                    downvotes={el.downvotes}
-                                    img={el.img}
-                                    editLikeUpvote={props.editLikeUpvote}
-                                    editDisLikeUpvote={props.editDisLikeUpvote}
-                                    editLikeDownvote={props.editLikeDownvote}
-                                    editDisLikeDownvote={props.editDisLikeDownvote}    
-                                    />
+                      {
+                        props.changeView === false ?
+                        (
+                          props.mem.filter(el => el.upvotes - el.downvotes > 5).map ((el, index) => {
+                            return (
+                                <FormMem 
+                                index={index}
+                                title={el.title}
+                                upvotes={el.upvotes}
+                                downvotes={el.downvotes}
+                                img={el.img}
+                                editLikeUpvote={props.editLikeUpvote}
+                                editDisLikeUpvote={props.editDisLikeUpvote}
+                                editLikeDownvote={props.editLikeDownvote}
+                                editDisLikeDownvote={props.editDisLikeDownvote}    
+                                />
+                            )
+                        })
+                        )
+                        :
+                        (
+                          props.mem.filter(el => el.upvotes - el.downvotes > 5).map ((el, index) => {
+                            return (
+                                <Listmem 
+                                index={index}
+                                title={el.title}
+                                upvotes={el.upvotes}
+                                downvotes={el.downvotes}
+                                img={el.img}
+                                editLikeUpvote={props.editLikeUpvote}
+                                editDisLikeUpvote={props.editDisLikeUpvote}
+                                editLikeDownvote={props.editLikeDownvote}
+                                editDisLikeDownvote={props.editDisLikeDownvote}   
+                                />
                                 )
-                            })
-                            }
+                              })
+                        )  
+                      }
                     </ThemeProvider>
                     </Grid>
         </Box>

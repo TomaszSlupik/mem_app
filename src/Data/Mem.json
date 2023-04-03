@@ -28,6 +28,12 @@
         "upvotes": 8,
         "downvotes": 40,
         "img": "/mem_app/img/mouse.jpg"
+    },
+    {
+        "title": "Mem Słoń",
+        "upvotes": 12,
+        "downvotes": 2,
+        "img": "/mem_app/img/elephant.png"
     }
     
 ]
