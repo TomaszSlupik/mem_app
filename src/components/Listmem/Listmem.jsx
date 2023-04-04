@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,6 +12,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import './Listmem.scss'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -21,10 +22,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Listmem(props) {
 
 
+  const [memOpen, setMemOpen] = useState (false)
   const handlerOpenMem = () => {
-
+      setMemOpen(true)
   }
 
+  const handlerCloseMem = () => {
+    setMemOpen(false)
+  }
 
   return (
           <>
@@ -37,19 +42,41 @@ export default function Listmem(props) {
           primary={props.title}
           secondary={
             <React.Fragment>
-              {/* <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"} */}
-              <Button
-              variant='outlined'
-              onClick={handlerOpenMem}
-              >Zobacz</Button>
+                <div className="listmem">
+                      
+                      <div className="listmem__btnGroup">
+                        <div className="listmem__btnGroup-box">
+                        Upvote {props.upvotes}
+                        <ButtonGroup
+                          disableElevation
+                          variant="contained"
+                          aria-label="Disabled elevation buttons"
+                          >
+                          <Button
+                          >+</Button>
+                          <Button
+                          >-</Button>
+                          </ButtonGroup>
+                        </div>
+                        <div className="listmem__btnGroup-box--second">
+                        Downvotes  {props.downvotes}
+                        <ButtonGroup
+                          disableElevation
+                          variant="contained"
+                          aria-label="Disabled elevation buttons"
+                          >
+                          <Button
+                          >+</Button>
+                          <Button
+                          >-</Button>
+                          </ButtonGroup>
+                        </div>
+                      </div>
+                    <Button
+                    variant='outlined'
+                    onClick={handlerOpenMem}
+                    >Zobacz</Button>
+                </div>
             </React.Fragment>
           }
         />
@@ -57,21 +84,22 @@ export default function Listmem(props) {
       <Divider variant="inset" component="li" />
       </List>
       <Dialog
-          // open={open}
+          open={memOpen}
           TransitionComponent={Transition}
           keepMounted
-          // onClose={handleClose}
+          onClose={handlerCloseMem}
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogTitle>{props.title}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Let Google help apps determine location. This means sending anonymous
-              location data to Google, even when no apps are running.
+              <img style={{width: '100%', height: '300px'}} src={props.img} alt={props.title} />
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            {/* <Button onClick={handleClose}>Agree</Button> */}
+            <Button 
+            variant='contained'
+            onClick={handlerCloseMem}>Zamknij</Button>
           </DialogActions>
       </Dialog>
       </>

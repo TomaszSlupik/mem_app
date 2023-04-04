@@ -3,7 +3,6 @@ import './Main.scss'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import { ThemeProvider } from '@emotion/react';
-import themeColor from '../../theme/themeColor';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import MuiAlert from '@mui/material/Alert';
