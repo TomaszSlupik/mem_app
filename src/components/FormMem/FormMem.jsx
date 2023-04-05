@@ -7,6 +7,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Typography from '@mui/material/Typography';
+import { FormattedMessage } from 'react-intl';
 
 export default function FormMem(props) {
 
@@ -31,31 +32,37 @@ export default function FormMem(props) {
                   </div>
                   <div className="card__voice">
                   <Box sx={{ width: '50%', textAlign: 'center' }}>
-                    Upvote {props.upvotes}
+                    <FormattedMessage id="upvote" defaultMessage="Zagłosuj"/>
+                    <span> {props.upvotes}</span>
                     <BottomNavigation
                       showLabels
                     >
                       <BottomNavigationAction 
                       onClick={() => props.editLikeUpvote(props.title, props.upvotes, props.downvotes, props.img)}
-                      label="like" icon={<FavoriteIcon />} />
+                      label={<FormattedMessage id="like" defaultMessage="Lubię to"/>}
+                      icon={<FavoriteIcon />} />
                       <BottomNavigationAction
                       disabled={props.upvotes <= 0} 
                       onClick={() => props.editDisLikeUpvote(props.title, props.upvotes, props.downvotes, props.img)}
-                      label="dislike" icon={<FavoriteIcon />} />
+                      label={<FormattedMessage id="dislike" defaultMessage="Nie lubię"/>}
+                      icon={<FavoriteIcon />} />
                     </BottomNavigation>
                   </Box>
                   <Box sx={{ width: '50%', textAlign: 'center' }}>
-                    Downvotes {props.downvotes}
+                    <FormattedMessage id="downvotes" defaultMessage="Negatywny"/>
+                    <span> {props.downvotes}</span>
                     <BottomNavigation
                       showLabels
                     >
                       <BottomNavigationAction 
                       onClick={() => props.editLikeDownvote(props.title, props.upvotes, props.downvotes, props.img)}
-                      label="like" icon={<FavoriteIcon />} />
+                      label={<FormattedMessage id="like" defaultMessage="Lubię to"/>}
+                      icon={<FavoriteIcon />} />
                       <BottomNavigationAction 
                       disabled={props.downvotes <= 0} 
                       onClick={() => props.editDisLikeDownvote(props.title, props.upvotes, props.downvotes, props.img)}
-                      label="dislike" icon={<FavoriteIcon />} />
+                      label={<FormattedMessage id="dislike" defaultMessage="Nie lubię"/>}
+                      icon={<FavoriteIcon />} />
                     </BottomNavigation>
                   </Box>
                   </div>
@@ -66,7 +73,7 @@ export default function FormMem(props) {
                         color="primary" 
                         mt={2}>{props.upvotes - props.downvotes}</Typography>
                         <div className="card__final-header--under">
-                            Final Voice
+                        <FormattedMessage id="finalvoice" defaultMessage="Podsumowanie głosowania"/>
                         </div>
                       </div>
                   </div>

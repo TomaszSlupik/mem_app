@@ -16,6 +16,7 @@ import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import PaletteIcon from '@mui/icons-material/Palette';
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -193,13 +194,13 @@ const changeThemeColor = () => {
             style={style.paper}
             elevation={3}>
             <div className="main__wrapper-box--header">
-                Dodaj mema
+            <FormattedMessage id="addmem" defaultMessage="Dodaj mema"/>
             </div>
             <ThemeProvider theme={props.changeColorLayout}>
             <div className="main__wrapper-box--clean"
             onClick={handlerClean}
             >
-                Wyczyść
+                <FormattedMessage id="clear" defaultMessage="Wyczyść"/>
                     < CleaningServicesIcon
                     style={style.clean}
                     color='primary'
@@ -208,19 +209,21 @@ const changeThemeColor = () => {
             <TextField 
             value={nameMem}
             error={nameMemError}
-            helperText={nameMemError ? "Nazwa mema musi mieć min. 4 znaki" : ""}
+            helperText={nameMemError ? 
+            <FormattedMessage id="namememmust" defaultMessage="Nazwa mema musi mieć min. 4 znaki"/> : ""}
             onChange={handlerInputMem}
             style={style.field}
             onBlur={() => validationInput(nameMem)}
-            id="outlined-basic" label="Nazwa mema" variant="outlined" />
+            id="outlined-basic" 
+            label={<FormattedMessage id="name" defaultMessage="Nazwa mema"/>}
+            variant="outlined" />
             <div className="main__wrapper-box--image">
             <IconButton 
             color="primary" aria-label="upload picture" component="label">
                     <input 
                     onChange={handleAddImage}
                     hidden accept="image/*" type="file"  />
-                    <div>Dodaj zdjęcie</div>
-                    <PhotoCamera />
+                    <div><FormattedMessage id="addphoto" defaultMessage="Dodaj zdjęcie "/></div><PhotoCamera />
             </IconButton>
                 {
                     imgMem === "start" ?
@@ -229,17 +232,17 @@ const changeThemeColor = () => {
                     ) :
                     imgMem === "" ?
                     (
-                        <div className='main__wrapper-box--image---false'>Wczytaj zdjęcie!</div>
+                        <div className='main__wrapper-box--image---false'><FormattedMessage id="uploadphoto" defaultMessage="Wczytaj zdjęcie!"/></div>
                     )
                     :
                     (
-                        <div className='main__wrapper-box--image---true'>Twoje zdjęcie zostało poprawnie wczytane</div>
+                        <div className='main__wrapper-box--image---true'><FormattedMessage id="success" defaultMessage="Twoje zdjęcie zostało poprawnie wczytane"/></div>
                     )
                 }
             </div>
             <div className="main__wrapper-box--voice">
                 <Badge badgeContent={addUpvote} color="primary">
-                Upvote
+                <FormattedMessage id="upvote" defaultMessage="Zagłosuj"/>
                 <KeyboardVoiceIcon color="action" />
                 
                 </Badge>
@@ -264,7 +267,7 @@ const changeThemeColor = () => {
 
            <div className="main__wrapper-box--voice">
            <Badge badgeContent={addDownvote} color="primary">
-            Downvote
+           <FormattedMessage id="downvotes" defaultMessage="Negatywny"/>
             <KeyboardVoiceIcon color="action" />
             
             </Badge>
@@ -288,14 +291,14 @@ const changeThemeColor = () => {
                 <Typography 
                 style={style.typography}
                 color="primary" mt={2}>{addSumVoice}</Typography>
-                <div className="main__wrapper-box--final---under">Final Voice</div>
+                <div className="main__wrapper-box--final---under"><FormattedMessage id="finalvoice" defaultMessage="Podsumowanie głosowania"/></div>
             </div>
             <Button 
             style={style.btn}
             variant="contained" endIcon={<SendIcon />}  
             onClick={handlerAccept}
             >
-            Dodaj
+            <FormattedMessage id="add" defaultMessage="Dodaj"/>
             </Button>
             </ThemeProvider>    
             </Paper>
@@ -306,14 +309,14 @@ const changeThemeColor = () => {
             
             <Snackbar open={addSuccess} autoHideDuration={6000}>
                 <Alert severity="success" sx={{ width: '100%' }}>
-                Twój mem został dodany do sekcji: 
-                {addSumVoice > 5 ? 
+                <FormattedMessage id="addsection" defaultMessage="Twój mem został dodany do sekcji:"/>
+                {addSumVoice <= 5 ? 
                 (
-                    <span> HOT</span>
+                    <span><FormattedMessage id="hot" defaultMessage="Gorące"/></span>
                 )
                 :
                 (
-                    <span> REGULAR</span>
+                    <span><FormattedMessage id="regular" defaultMessage="Regular"/></span>
                 )}
                 </Alert>
             </Snackbar>
@@ -323,7 +326,7 @@ const changeThemeColor = () => {
             
             <Snackbar open={addError} autoHideDuration={6000}>
                 <Alert severity="error" sx={{ width: '100%' }}>
-                Wypełnij poprawnie formularz
+                <FormattedMessage id="error" defaultMessage="Wypełnij poprawnie formularz"/>      
                 </Alert>
             </Snackbar>
        </Stack>

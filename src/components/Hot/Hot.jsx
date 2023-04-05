@@ -37,6 +37,8 @@ export default function Hot(props) {
            setChangeColorLayout={props.setChangeColorLayout}
            changeView={props.changeView}
            setChangeView={props.setChangeView}
+           language={props.language}
+           setLanguage={props.setLanguage}
           />
       </div>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -56,7 +58,9 @@ export default function Hot(props) {
                                 editLikeUpvote={props.editLikeUpvote}
                                 editDisLikeUpvote={props.editDisLikeUpvote}
                                 editLikeDownvote={props.editLikeDownvote}
-                                editDisLikeDownvote={props.editDisLikeDownvote}    
+                                editDisLikeDownvote={props.editDisLikeDownvote}  
+                                language={props.language}
+                                setLanguage={props.setLanguage}  
                                 />
                             )
                         })
@@ -74,7 +78,9 @@ export default function Hot(props) {
                                 editLikeUpvote={props.editLikeUpvote}
                                 editDisLikeUpvote={props.editDisLikeUpvote}
                                 editLikeDownvote={props.editLikeDownvote}
-                                editDisLikeDownvote={props.editDisLikeDownvote}   
+                                editDisLikeDownvote={props.editDisLikeDownvote}
+                                language={props.language}
+                                setLanguage={props.setLanguage}   
                                 />
                                 )
                               })

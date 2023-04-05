@@ -1,39 +1,69 @@
 [
     {
-        "title": "Mem 1",
+        "title": "Buldog francuski",
         "upvotes": 26,
         "downvotes": 10,
-        "img": ""
+        "img": "/mem_app/img/frenchbulldog.jpg"
     },
     {
-        "title": "Mem 2",
+        "title": "York",
         "upvotes": 6,
         "downvotes": 10,
-        "img": ""
+        "img": "/mem_app/img/dog.jpg"
     },
     {
-        "title": "Mem 3",
+        "title": "Kot w kuchni",
         "upvotes": 16,
         "downvotes": 0,
-        "img": ""
+        "img": "/mem_app/img/cat.jpg"
     },
     {
-        "title": "Mem 4",
+        "title": "Banany",
         "upvotes": 8,
         "downvotes": 20,
-        "img": "mouse.jpg"
+        "img": "/mem_app/img/bananas.jpg"
     },
      {
-        "title": "Mem 5",
+        "title": "Kaczka z jajkiem",
         "upvotes": 8,
         "downvotes": 40,
-        "img": "/mem_app/img/mouse.jpg"
+        "img": "/mem_app/img/egg.png"
     },
     {
-        "title": "Mem Słoń",
+        "title": "Słoń z myszą",
         "upvotes": 12,
         "downvotes": 2,
         "img": "/mem_app/img/elephant.png"
+    }, 
+    {
+        "title": "Chochlik",
+        "upvotes": 9,
+        "downvotes": 1,
+        "img": "/mem_app/img/chochlik.jpg"
+    },
+    {
+        "title": "Siłownia",
+        "upvotes": 1,
+        "downvotes": 3,
+        "img": "/mem_app/img/silownia.jpg"
+    },
+    {
+        "title": "Pendrive",
+        "upvotes": 14,
+        "downvotes": 2,
+        "img": "/mem_app/img/pendrive.png"
+    },
+    {
+        "title": "Okulary",
+        "upvotes": 3,
+        "downvotes": 3,
+        "img": "/mem_app/img/glasses.jpg"
+    },
+    {
+        "title": "Tosty",
+        "upvotes": 22,
+        "downvotes": 5,
+        "img": "/mem_app/img/tosty.jpg"
     }
     
 ]

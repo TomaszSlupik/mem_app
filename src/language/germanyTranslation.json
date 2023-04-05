@@ -1,0 +1,22 @@
+{
+    "upvote" : "Positiv bewerten",
+    "downvotes": "Stimmen ab",
+    "finalvoice" : "Letzte Stimme",
+    "like": "Wie",
+    "dislike": "Nicht gefallen",
+    "look": "Suchen",
+    "close": "Schließen",
+    "home": "Heim",
+    "hot": "heiß",
+    "regular": "Regulär",
+    "addmem": "Hinzufügen mem",
+    "clear": "Klar",
+    "name": "Name mem",
+    "addphoto": "Foto hinzufügen",
+    "uploadphoto" : "Foto hochladen!",
+    "namememmust": "Name mem muss mind. 4 Zeichen",
+    "success": "Ihr Foto wurde erfolgreich geladen",
+    "add": "Hinzufügen",
+    "error": "Füllen Sie das Formular korrekt aus",
+    "addsection": "Ihr Meme wurde dem Abschnitt hinzugefügt:"
+}

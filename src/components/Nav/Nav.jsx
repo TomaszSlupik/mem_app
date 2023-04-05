@@ -11,6 +11,7 @@ import ListItem from '@mui/material/ListItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
+import { FormattedMessage } from 'react-intl';
 
 
 export default function Nav(props) {
@@ -59,21 +60,21 @@ export default function Nav(props) {
                             to="/mem_app"
                             style={style.link}
                             >
-                                Home
+                                <FormattedMessage id="home" defaultMessage="Start"/>
                             </Link>
                                
                                 <Link 
                             to="mem_app/hot"
                             style={style.link}
                             >
-                                Hot
+                                <FormattedMessage id="hot" defaultMessage="Gorące"/>
                             </Link>
                             <Divider />
                             <Link 
                             to="mem_app/regular"
                             style={style.link}
                             >
-                                Regular
+                                <FormattedMessage id="regular" defaultMessage="Regular"/>
                             </Link>
                             <Divider />
                           

@@ -1,6 +1,8 @@
 .listmem {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     &__btnGroup {
         display: flex;
         flex-direction: row;
@@ -18,6 +20,11 @@
                 flex-direction: column;
             }
         }
-
+    }
+    &__textUnder {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: black;
     }
 }

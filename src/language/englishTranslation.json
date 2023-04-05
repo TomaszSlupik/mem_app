@@ -1,0 +1,22 @@
+{
+    "upvote" : "Upvote",
+    "downvotes": "Downvotes",
+    "finalvoice" : "Final Voice", 
+    "like": "Like",
+    "dislike": "Dislike",
+    "look": "Look",
+    "close": "Close",
+    "home": "Home",
+    "hot": "Hot",
+    "regular": "Regular",
+    "addmem": "Add mem",
+    "clear": "Clear",
+    "name": "Name mem",
+    "addphoto": "Add photo",
+    "uploadphoto" : "Upload photo!",
+    "namememmust": "Name mem must have min. 4 characters",
+    "success": "Your photo has been loaded successfully",
+    "add": "Add",
+    "error": "Complete the form correctly",
+    "addsection": "Your meme has been added to the section:"
+}

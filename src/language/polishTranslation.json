@@ -1,0 +1,22 @@
+{
+    "upvote" : "Zagłosuj",
+    "downvotes": "Negatywny",
+    "finalvoice": "Podsumowanie głosowania",
+    "like": "Lubię to",
+    "dislike": "Nie lubię",
+    "look": "Zobacz",
+    "close": "Zamknij",
+    "home": "Start",
+    "hot": "Gorące",
+    "regular": "Regular",
+    "addmem": "Dodaj mema",
+    "clear": "Wyczyść",
+    "name": "Nazwa mema",
+    "addphoto": "Dodaj zdjęcie",
+    "uploadphoto" : "Wczytaj zdjęcie!",
+    "namememmust": "Nazwa mema musi mieć min. 4 znaki",
+    "success": "Twoje zdjęcie zostało poprawnie wczytane",
+    "add": "Dodaj",
+    "error": "Wypełnij poprawnie formularz",
+    "addsection": "Twój mem został dodany do sekcji:"
+}

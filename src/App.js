@@ -11,6 +11,10 @@ import Regular from './components/Regular/Regular';
 import Footer from './components/Footer/Footer';
 import Mem from './Data/Mem.json'
 import useTitleWebside from './hook/useTitleWebside';
+import { IntlProvider } from 'react-intl';
+import translationsPL from './language/polishTranslation.json'
+import translationsEN from './language/englishTranslation.json'
+import translationsDE from './language/germanyTranslation.json'
 
 function App() {
 
@@ -90,8 +94,11 @@ setPrevState(copyMem.map(el => el.title === name ? editMem : el))
 const [changeColorLayout, setChangeColorLayout] = useState(themeColor)
 const [changeView, setChangeView] = useState(false)
 
+const [language, setLanguage] = useState('pl')
+
   return (
     <div className="App">
+      <IntlProvider locale={language} messages={language === 'pl' ? translationsPL : language === 'en' ? translationsEN : language === 'de' ? translationsDE : translationsPL}>
         <Router>
           <Header 
             changeColorLayout={changeColorLayout}
@@ -121,6 +128,8 @@ const [changeView, setChangeView] = useState(false)
                  setChangeColorLayout={setChangeColorLayout}
                  changeView={changeView}
                  setChangeView={setChangeView}
+                 language={language}
+                 setLanguage={setLanguage}
                 />
                 </Provider>}
               />
@@ -138,6 +147,8 @@ const [changeView, setChangeView] = useState(false)
              setChangeColorLayout={setChangeColorLayout}
              changeView={changeView}
              setChangeView={setChangeView}
+             language={language}
+             setLanguage={setLanguage}
             />} />
           </Routes>
           <Footer
@@ -145,6 +156,7 @@ const [changeView, setChangeView] = useState(false)
           setChangeColorLayout={setChangeColorLayout}
           />
         </Router>
+        </IntlProvider>
     </div>
   );
 }
