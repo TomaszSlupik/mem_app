@@ -4,7 +4,7 @@ const Searchinput= styled('input')(({theme}) => ({
     [theme.breakpoints.up('xs')] : {
         width: '100%' ,
         borderRadius: '8px',
-        marginLeft: '5.8em',
+        marginLeft: '7.8em',
         [theme.breakpoints.up('xs')]: {
             width: '12.5ch',
             '&:focus': {
