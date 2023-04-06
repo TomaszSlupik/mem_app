@@ -18,5 +18,7 @@
     "success": "Your photo has been loaded successfully",
     "add": "Add",
     "error": "Complete the form correctly",
-    "addsection": "Your meme has been added to the section:"
+    "addsection": "Your meme has been added to the section:",
+    "infouser": "Information for the user",
+    "describe": "Memes with a quantity (Vote - Negative > 5) go to route '/hot', the rest are stored in '/regular. To add a meme, you must enter a name and insert a photo"
 }

@@ -18,5 +18,7 @@
     "success": "Twoje zdjęcie zostało poprawnie wczytane",
     "add": "Dodaj",
     "error": "Wypełnij poprawnie formularz",
-    "addsection": "Twój mem został dodany do sekcji:"
+    "addsection": "Twój mem został dodany do sekcji:",
+    "infouser": "Informacja dla użtkownika",
+    "describe": "Memy z ilością (Zagłosuj - Negatywny > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"
 }

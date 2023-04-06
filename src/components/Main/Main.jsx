@@ -17,13 +17,23 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import PaletteIcon from '@mui/icons-material/Palette';
 import { FormattedMessage } from 'react-intl';
-
-
-
+import HelpIcon from '@mui/icons-material/Help';
+import Slide from '@mui/material/Slide';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+return <Slide direction="up" ref={ref} {...props} />;
+});
+  
 
 export default function Main(props) {
 
@@ -34,6 +44,7 @@ const style ={
     btnGroup: {border: '1 px solid'},
     typography: {fontWeight: 600},
     clean: {cursor: 'pointer', fontSize: '2rem'},
+    info:{cursor: 'pointer', fontSize: '2rem'},
     palette: {position: 'absolute', cursor: 'pointer', fontSize: '4rem', top: '-6%' }
 }
 
@@ -45,6 +56,7 @@ const [addUpvote, setAddUpvote] = useState(0)
 const [addDownvote, setAddDownvote] = useState(0)
 const [addSumVoice, setAddSumVoice] = useState()
 const [imgMem, setImgMem] = useState("start")
+const [infoForUsers, setInfoForUsers] = useState(false)
 
 const MIN_INPUT_NAME_MEM = 4
 const MAX_INPUT_NAME_MEM = 30
@@ -95,7 +107,7 @@ const validationInput = (value) => {
 
 const handlerAccept = (e) => {
     e.preventDefault()
-    if (nameMem === "" || nameMemError === true) {
+    if (nameMem === "" || nameMemError === true || imgMem === 'start') {
         setImgMem("")
         setAddError(true)
         setTimeout(() => {
@@ -115,9 +127,12 @@ const handlerAccept = (e) => {
             setAddSuccess(false)
         }, 1500)
         setNameMem("")
-        setAddUpvote(0)
-        setAddDownvote(0)
         setImgMem("start")
+
+        setTimeout(() => {
+            setAddUpvote(0)
+            setAddDownvote(0)
+        }, 2000)
     }
     
 }
@@ -181,6 +196,13 @@ const changeThemeColor = () => {
     })
 }
 
+const handlerOpenInfoUsers = () => {
+    setInfoForUsers(true)
+}
+
+const handlerCloseInfoUsers = () => {
+    setInfoForUsers(false)
+}
 
 
   return (
@@ -205,6 +227,36 @@ const changeThemeColor = () => {
                     style={style.clean}
                     color='primary'
                     />
+                    <HelpIcon 
+                    onClick={handlerOpenInfoUsers}
+                    style={style.info}
+                    color='primary'
+                    />
+
+                    <Dialog
+                            open={infoForUsers}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={handlerCloseInfoUsers}
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle>{
+                                 <FormattedMessage id="infouser" defaultMessage="Informacja dla użtkownika"/>
+                                }</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description">
+                                <FormattedMessage id="describe" defaultMessage="Memy z ilością (Zagłosuj - Negatywny > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"/>
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button 
+                            variant='contained'
+                            onClick={handlerCloseInfoUsers}>
+                                <FormattedMessage id="close" defaultMessage="Zamknij"/>
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+
             </div>
             <TextField 
             value={nameMem}
@@ -310,7 +362,7 @@ const changeThemeColor = () => {
             <Snackbar open={addSuccess} autoHideDuration={6000}>
                 <Alert severity="success" sx={{ width: '100%' }}>
                 <FormattedMessage id="addsection" defaultMessage="Twój mem został dodany do sekcji:"/>
-                {addSumVoice > 5 ? 
+                {addUpvote -  addDownvote > 5 ? 
                 (
                     <span><FormattedMessage id="hot" defaultMessage="Gorące"/></span>
                 )

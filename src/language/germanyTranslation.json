@@ -18,5 +18,7 @@
     "success": "Ihr Foto wurde erfolgreich geladen",
     "add": "Hinzufügen",
     "error": "Füllen Sie das Formular korrekt aus",
-    "addsection": "Ihr Meme wurde dem Abschnitt hinzugefügt:"
+    "addsection": "Ihr Meme wurde dem Abschnitt hinzugefügt:",
+    "infouser": "Informationen für den Benutzer",
+    "describe": "Memes mit einer Menge (Vote - Negativ > 5) gehen auf die Route „/hot“, andere werden in „/regular“ gespeichert. Um ein Meme hinzuzufügen, müssen Sie einen Namen eingeben und ein Foto einfügen"
 }
