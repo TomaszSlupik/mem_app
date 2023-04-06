@@ -55,7 +55,7 @@ export default function Listmem(props) {
                       
                       <div className="listmem__btnGroup">
                         <div className="listmem__btnGroup-box">
-                        <FormattedMessage id="upvote" defaultMessage="Zagłosuj"/> {props.upvotes}
+                        <FormattedMessage id="upvote" defaultMessage="Podoba mi się"/> {props.upvotes}
                         <ButtonGroup
                           disableElevation
                           variant="contained"
@@ -71,7 +71,7 @@ export default function Listmem(props) {
                           </ButtonGroup>
                         </div>
                         <div className="listmem__btnGroup-box--second">
-                        <FormattedMessage id="downvotes" defaultMessage="Negatywny"/> {props.downvotes}
+                        <FormattedMessage id="downvotes" defaultMessage="Nie podoba mi się"/> {props.downvotes}
                         <ButtonGroup
                           disableElevation
                           variant="contained"

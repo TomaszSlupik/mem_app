@@ -1,6 +1,6 @@
 {
-    "upvote" : "Zagłosuj",
-    "downvotes": "Negatywny",
+    "upvote" : "Podoba mi się",
+    "downvotes": "Nie podoba mi się",
     "finalvoice": "Podsumowanie głosowania",
     "like": "Lubię to",
     "dislike": "Nie lubię",
@@ -20,5 +20,5 @@
     "error": "Wypełnij poprawnie formularz",
     "addsection": "Twój mem został dodany do sekcji:",
     "infouser": "Informacja dla użtkownika",
-    "describe": "Memy z ilością (Zagłosuj - Negatywny > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"
+    "describe": "Memy z ilością (Podoba mi się - Nie podoba mi się > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"
 }

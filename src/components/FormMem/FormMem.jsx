@@ -32,7 +32,7 @@ export default function FormMem(props) {
                   </div>
                   <div className="card__voice">
                   <Box sx={{ width: '50%', textAlign: 'center' }}>
-                    <FormattedMessage id="upvote" defaultMessage="Zagłosuj"/>
+                    <FormattedMessage id="upvote" defaultMessage="Podoba mi się"/>
                     <span> {props.upvotes}</span>
                     <BottomNavigation
                       showLabels
@@ -49,7 +49,7 @@ export default function FormMem(props) {
                     </BottomNavigation>
                   </Box>
                   <Box sx={{ width: '50%', textAlign: 'center' }}>
-                    <FormattedMessage id="downvotes" defaultMessage="Negatywny"/>
+                    <FormattedMessage id="downvotes" defaultMessage="Nie podoba mi się"/>
                     <span> {props.downvotes}</span>
                     <BottomNavigation
                       showLabels

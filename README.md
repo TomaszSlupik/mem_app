@@ -23,7 +23,7 @@ Projekt został stworzony w technologiach:
 
 Aplikacja polega na wyświetlaniu Memów. 
 
-Główny panel aplikacji to możliwość dodania mema. Memy z ilością (Zagłosuj - Negatywny > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular.
+Główny panel aplikacji to możliwość dodania mema. Memy z ilością (Podoba mi się - Nie podoba mi się > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular.
 
 Na dodawanie mema zrobiona jest walidacja. Użytkownik, aby mógł dodać mema, musi podać nazwę Mema oraz wybrać zdjęcie. W przeciwnym wypadku nie doda mema.
 

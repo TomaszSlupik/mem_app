@@ -245,7 +245,7 @@ const handlerCloseInfoUsers = () => {
                                 }</DialogTitle>
                             <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                <FormattedMessage id="describe" defaultMessage="Memy z ilością (Zagłosuj - Negatywny > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"/>
+                                <FormattedMessage id="describe" defaultMessage="Memy z ilością (Podoba mi się - Nie podoba mi się > 5) trafiają na route ‘/hot’, pozostałe przechowywane są w '/regular. Aby dodać mema musisz podać nazwę i wstawić zdjęcie"/>
                             </DialogContentText>
                             </DialogContent>
                             <DialogActions>
@@ -294,7 +294,7 @@ const handlerCloseInfoUsers = () => {
             </div>
             <div className="main__wrapper-box--voice">
                 <Badge badgeContent={addUpvote} color="primary">
-                <FormattedMessage id="upvote" defaultMessage="Zagłosuj"/>
+                <FormattedMessage id="upvote" defaultMessage="Podoba mi się"/>
                 <KeyboardVoiceIcon color="action" />
                 
                 </Badge>
@@ -319,7 +319,7 @@ const handlerCloseInfoUsers = () => {
 
            <div className="main__wrapper-box--voice">
            <Badge badgeContent={addDownvote} color="primary">
-           <FormattedMessage id="downvotes" defaultMessage="Negatywny"/>
+           <FormattedMessage id="downvotes" defaultMessage="Nie podoba mi się"/>
             <KeyboardVoiceIcon color="action" />
             
             </Badge>
