@@ -310,7 +310,7 @@ const changeThemeColor = () => {
             <Snackbar open={addSuccess} autoHideDuration={6000}>
                 <Alert severity="success" sx={{ width: '100%' }}>
                 <FormattedMessage id="addsection" defaultMessage="Twój mem został dodany do sekcji:"/>
-                {addSumVoice <= 5 ? 
+                {addSumVoice > 5 ? 
                 (
                     <span><FormattedMessage id="hot" defaultMessage="Gorące"/></span>
                 )
