@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mem_app/static/css/main.6c510ee0.css",
-    "main.js": "/mem_app/static/js/main.7d48910b.js",
+    "main.js": "/mem_app/static/js/main.36f6cae8.js",
     "index.html": "/mem_app/index.html",
     "main.6c510ee0.css.map": "/mem_app/static/css/main.6c510ee0.css.map",
-    "main.7d48910b.js.map": "/mem_app/static/js/main.7d48910b.js.map"
+    "main.36f6cae8.js.map": "/mem_app/static/js/main.36f6cae8.js.map"
   },
   "entrypoints": [
     "static/css/main.6c510ee0.css",
-    "static/js/main.7d48910b.js"
+    "static/js/main.36f6cae8.js"
   ]
 }
