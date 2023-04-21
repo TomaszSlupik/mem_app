@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import Paper from "@mui/material/Paper";
 import "./Footer.scss";
 import { ThemeProvider } from "@emotion/react";
-import themeColor from "../../theme/themeColor";
 import { current } from "@reduxjs/toolkit";
 
 export default function Footer(props) {

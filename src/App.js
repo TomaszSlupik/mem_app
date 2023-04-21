@@ -1,7 +1,7 @@
 import './App.scss';
 import React, { useEffect, useState } from 'react'
 import Main from './components/Main/Main';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import themeColor from './theme/themeColor';
 import Header from './components/Header/Header';
 import Hot from './components/Hot/Hot';
