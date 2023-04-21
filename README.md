@@ -6,7 +6,7 @@
 Mem app została utworzona pod Desktopy 💻
 oraz urządzenia mobilne 📱. 
 
-`<link>` : <https://tomaszslupik.github.io/mem_app/>
+`<link>` : <https://tomaszslupik.github.io/mem_app/#/mem_app>
 
 ## Technologie
 
