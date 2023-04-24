@@ -4,7 +4,6 @@ import theme from "../../theme/breakpoints";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import "./Hot.scss";
-import themeColor from "../../theme/themeColor";
 import Searchmem from "../Searchmem/Searchmem";
 import FormMem from "../FormMem/FormMem";
 import Viewcard from "../Viewcard/Viewcard";

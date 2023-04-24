@@ -4,7 +4,6 @@ import Searchmem from "../Searchmem/Searchmem";
 import { ThemeProvider } from "@emotion/react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import themeColor from "../../theme/themeColor";
 import theme from "../../theme/breakpoints";
 import Viewcard from "../Viewcard/Viewcard";
 import Listmem from "../Listmem/Listmem";

@@ -1,20 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import "./Footer.scss";
 import { ThemeProvider } from "@emotion/react";
-import { current } from "@reduxjs/toolkit";
+import { DateTime } from "luxon";
 
 export default function Footer(props) {
-  const yearNow = () => {
-    let year = footerYear.current;
-    year.innerText = new Date().getFullYear();
-  };
-
-  const footerYear = useRef(null);
-
-  useEffect(() => {
-    yearNow();
-  }, []);
+  const [yearNow, setYearNow] = useState(DateTime.now());
 
   return (
     <footer>
@@ -32,7 +23,7 @@ export default function Footer(props) {
             <div className="footer__box">
               <div className="footer__box-text">
                 &copy;
-                <span className="footer__box-text" ref={footerYear}></span>
+                <span className="footer__box-text">{yearNow.c.year}</span>
                 &nbsp;Created by Tomasz Słupik
               </div>
             </div>

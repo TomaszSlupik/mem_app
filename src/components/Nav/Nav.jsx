@@ -1,7 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../../theme/breakpoints";
-import themeColor from "../../theme/themeColor";
 import MyLink from "../../styles/Mylink";
 import Navigation from "../../styles/Navigation";
 import { Link } from "react-router-dom";
